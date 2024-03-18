@@ -1,5 +1,10 @@
 # FriendFusion
 
+# Project Description
+
+The project is a social media platform called "FriendFusion" that allows users to connect, share posts, interact through comments and likes, send messages, and stay updated with notifications. It provides features like user registration and authentication, profile management, post creation/editing/deletion, following/unfollowing users, messaging, notifications, tagging topics, and exploring trending content. The project aims to create a seamless and engaging social networking experience for users while promoting meaningful interactions and content discovery.
+
+
 ## DB Structure
 
 ### Users Table:
