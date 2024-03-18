@@ -145,3 +145,68 @@
 - Edit Reel: Modify existing reel content.
 - Delete Reel: Remove a reel from the platform.
 - Get Reels: Retrieve reels for users or explore page.
+
+# Routes
+
+## User Endpoints
+- **POST** /register: Create a new user account.
+- **POST** /login: Authenticate and log in a user.
+- **GET** /profile/{user_id}: Retrieve user profile information.
+- **PUT** /profile/update: Modify user profile details.
+- **PUT** /password/update: Update user password.
+- **DELETE** /delete/{user_id}: Remove a user's account.
+
+## Post Endpoints
+- **POST** /posts/create: Create a new post.
+- **PUT** /posts/edit/{post_id}: Modify an existing post.
+- **DELETE** /posts/delete/{post_id}: Remove a post.
+- **GET** /posts/{post_id}: Retrieve details of a specific post.
+- **GET** /posts/user/{user_id}: Get posts created by a user.
+- **POST** /posts/{post_id}/like: Like a post.
+- **POST** /posts/{post_id}/comment: Add a comment to a post.
+
+## Comment Endpoints
+- **GET** /comments/{post_id}: Retrieve comments for a post.
+- **POST** /comments/{post_id}/add: Add a comment to a post.
+- **PUT** /comments/edit/{comment_id}: Modify an existing comment.
+- **DELETE** /comments/delete/{comment_id}: Remove a comment.
+
+## Like Endpoints
+- **POST** /likes/{post_id}/add: Like a post.
+- **DELETE** /likes/{post_id}/remove: Remove a like from a post.
+
+## Follow Endpoints
+- **POST** /follow/{user_id}/add: Follow a user.
+- **DELETE** /follow/{user_id}/remove: Unfollow a user.
+- **GET** /followers/{user_id}: Retrieve followers of a user.
+- **GET** /following/{user_id}: Retrieve users followed by a user.
+
+## Message Endpoints
+- **POST** /messages/send: Send a message.
+- **GET** /messages/{user_id}: Retrieve messages for a user.
+- **PUT** /messages/{message_id}/read: Mark a message as read/unread.
+- **DELETE** /messages/{message_id}/delete: Remove a message.
+
+## Notification Endpoints
+- **GET** /notifications/{user_id}: Retrieve notifications for a user.
+- **PUT** /notifications/{notification_id}/read: Mark a notification as read/unread.
+- **DELETE** /notifications/{notification_id}/delete: Remove a notification.
+
+## Tag Endpoints
+- **GET** /tags: Retrieve all available tags.
+- **POST** /tags/create: Create a new tag.
+- **PUT** /tags/edit/{tag_id}: Modify an existing tag.
+- **DELETE** /tags/delete/{tag_id}: Remove a tag.
+
+## Topic Endpoints
+- **GET** /topics: Retrieve all available topics.
+- **POST** /topics/create: Create a new topic.
+- **PUT** /topics/edit/{topic_id}: Modify an existing topic.
+- **DELETE** /topics/delete/{topic_id}: Remove a topic.
+
+## Reel Endpoints
+- **POST** /reels/create: Create a new reel.
+- **PUT** /reels/edit/{reel_id}: Modify an existing reel.
+- **DELETE** /reels/delete/{reel_id}: Remove a reel.
+- **GET** /reels/{user_id}: Retrieve reels for a user.
+
