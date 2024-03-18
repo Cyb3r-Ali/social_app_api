@@ -1,2 +1,147 @@
-# social_app_api
-creating this repo for a social media project for now its on test mode
+# FriendFusion
+
+## DB Structure
+
+### Users Table:
+- user_id (Primary Key)
+- username
+- email
+- password_hash
+- profile_picture_url
+- bio
+- registration_date
+- last_login_date
+
+### Posts Table:
+- post_id (Primary Key)
+- user_id (Key referencing Users table)
+- post_content
+- media_url
+- post_date
+- likes_count
+- comments_count
+
+### Comments Table:
+- comment_id (Primary Key)
+- post_id (Key referencing Posts table)
+- user_id (Key referencing Users table)
+- comment_content
+- comment_date
+
+### Likes Table:
+- like_id (Primary Key)
+- post_id (Key referencing Posts table)
+- user_id (Key referencing Users table)
+- like_date
+
+### Followers Table:
+- follow_id (Primary Key)
+- follower_id (Key referencing Users table)
+- following_id (Key referencing Users table)
+- follow_date
+
+### Messages Table:
+- message_id (Primary Key)
+- sender_id (Key referencing Users table)
+- receiver_id (Key referencing Users table)
+- message_content
+- message_date
+- is_read (boolean flag to indicate if the message has been read)
+
+### Notifications Table:
+- notification_id (Primary Key)
+- user_id (Key referencing Users table)
+- notification_type (e.g., like, comment, follow)
+- related_id (ID of the related post/comment/user)
+- notification_date
+- is_read (boolean flag to indicate if the notification has been read)
+
+### Tag Table:
+- tag_id (Primary Key)
+- tag_name
+
+### Topics Table:
+- topic_id (Primary Key)
+- topic_name
+- tag_id (Key referencing Tags table, to associate tags with topics)
+
+### Reels Table:
+- reel_id (Primary Key)
+- user_id (Key referencing Users table)
+- reel_content
+- reel_date
+- likes_count
+- comments_count
+
+### Trends Table:
+- trend_id (Primary Key)
+- trend_name
+- trend_description
+- trend_hash
+- likes_count
+- comments_count
+- tag_id (Key referencing Tags table, to associate tags with trends)
+
+## API Structure
+
+### User APIs:
+- Register User: Create a new user account.
+- Login User: Authenticate and log in a user.
+- Get User Profile: Retrieve user profile information.
+- Update User Profile: Modify user profile details.
+- Change Password: Update user password.
+- Delete User Account: Remove a user's account from the system.
+
+### Post APIs:
+- Create Post: Allow users to create new posts.
+- Edit Post: Modify existing posts.
+- Delete Post: Remove a post from the platform.
+- Get Post: Retrieve details of a specific post.
+- Get User Posts: Get posts created by a specific user.
+- Like Post: Allow users to like posts.
+- Comment on Post: Enable commenting on posts.
+
+### Comment APIs:
+- Get Comments: Retrieve comments for a particular post.
+- Add Comment: Allow users to add comments to posts.
+- Edit Comment: Modify existing comments.
+- Delete Comment: Remove a comment from a post.
+
+### Like APIs:
+- Like Post/Comment: Allow users to like posts or comments.
+- Unlike Post/Comment: Remove a like from a post or comment.
+
+### Follow APIs:
+- Follow User: Enable users to follow other users.
+- Unfollow User: Allow users to unfollow other users.
+- Get Followers: Retrieve followers of a specific user.
+- Get Following: Retrieve users followed by a specific user.
+
+### Message APIs:
+- Send Message: Allow users to send messages to other users.
+- Get Messages: Retrieve messages for a user.
+- Mark Message Read/Unread: Update message status (read/unread).
+- Delete Message: Remove a message from the inbox.
+
+### Notification APIs:
+- Get Notifications: Retrieve notifications for a user.
+- Mark Notification Read/Unread: Update notification status (read/unread).
+- Delete Notification: Remove a notification.
+
+### Tag APIs:
+- Get Tags: Retrieve all available tags.
+- Create Tag: Allow admins to create new tags (if applicable).
+- Edit Tag: Modify existing tag details.
+- Delete Tag: Remove a tag from the system.
+
+### Topic APIs:
+- Get Topics: Retrieve all available topics.
+- Create Topic: Allow admins to create new topics (if applicable).
+- Edit Topic: Modify existing topic details.
+- Delete Topic: Remove a topic from the system.
+
+### Reel APIs:
+- Create Reel: Allow users to create new reels.
+- Edit Reel: Modify existing reel content.
+- Delete Reel: Remove a reel from the platform.
+- Get Reels: Retrieve reels for users or explore page.
