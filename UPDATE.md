@@ -21,4 +21,6 @@ Moving forward, our focus will be on:
 ## Challenges Faced
 We encountered minor issues with Git's line endings during the setup, but we successfully resolved them by configuring Git appropriately.
 
-Today's progress marks a significant step forward, and we look forward to further development and improvements in our application.
+While setting up the development environment, we encountered a nodemon issue that prevented automatic server restarts on file changes. However, we were able to address and resolve this issue, ensuring smooth development workflow.
+
+Today's progress marks a significant step forward, and we are excited about the upcoming milestones and improvements in our application.
