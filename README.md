@@ -12,16 +12,14 @@ The project is a social media platform called "FriendFusion" that allows users t
 - username
 - email
 - password_hash
-- profile_picture_url
+- profile_picture
 - bio
 - registration_date
-- last_login_date
 
 ### Posts Table:
 - post_id (Primary Key)
 - user_id (Key referencing Users table)
 - post_content
-- media_url
 - post_date
 - likes_count
 - comments_count
@@ -37,7 +35,7 @@ The project is a social media platform called "FriendFusion" that allows users t
 - like_id (Primary Key)
 - post_id (Key referencing Posts table)
 - user_id (Key referencing Users table)
-- like_date
+
 
 ### Followers Table:
 - follow_id (Primary Key)
@@ -95,7 +93,9 @@ The project is a social media platform called "FriendFusion" that allows users t
 - Get User Profile: Retrieve user profile information.
 - Update User Profile: Modify user profile details.
 - Change Password: Update user password.
+- Forgot Password: Send a password reset link to the user's email.
 - Delete User Account: Remove a user's account from the system.
+
 
 ### Post APIs:
 - Create Post: Allow users to create new posts.
