@@ -21,11 +21,15 @@ exports.getUserByField = async (fieldName, fieldValue) => {
 exports.getAllUsers = async () => {
     try {
         const [rows] = await pool.query('SELECT * FROM users');
-        return rows;
+        return rows || []; // Return an empty array if no users found
     } catch (error) {
-        throw error;
+        console.error('Error fetching all users:', error);
+        const statusCode = error.statusCode || 500; // Default to 500 if statusCode is not provided
+        const errorMessage = error.message || 'Internal server error'; // Default to 'Internal server error' if message is not provided
+        throw { statusCode, errorMessage };
     }
 };
+
 
 // Function to create a new user in the database
 exports.createUser = async ({ full_name, username, email, password, bio, role, is_admin, profile_picture }) => {
