@@ -1,29 +1,31 @@
-# Update of (18-3-2024): Setting Up Database Connection and Server
+## Update of (18-3-2024): Setting Up Database Connection and Server
 
-## Overview
+### Overview
 Today, we accomplished the following milestones in our project:
 
 - Successfully set up the database connection using `mysql2` and environment variables from a `.env` file with `dotenv`.
 - Configured an Express server in `index.js` with middleware for body parsing and serving static files.
 - Pushed our project code to GitHub for version control and collaboration.
 
-## Achievements
+### Achievements
 - **Database Connection:** Created `db.js` for database configuration, ensuring efficient database interactions.
 - **Server Configuration:** Configured middleware and static file serving in Express for a robust server setup.
 - **GitHub Push:** Ensured version control and collaboration by pushing our project to GitHub.
 
-## Next Steps
+### Next Steps
 Moving forward, our focus will be on:
 - Implementing CRUD operations for database interactions.
 - Adding authentication and authorization to secure our application.
 - Enhancing user experience with additional features and functionalities.
 
-## Challenges Faced
+### Challenges Faced
 We encountered minor issues with Git's line endings during the setup, but we successfully resolved them by configuring Git appropriately.
 
 While setting up the development environment, we encountered a nodemon issue that prevented automatic server restarts on file changes. However, we were able to address and resolve this issue, ensuring smooth development workflow.
 
 Today's progress marks a significant step forward, and we are excited about the upcoming milestones and improvements in our application.
+
+#
 
 # Update of (19-3-2024): Implementing Image Upload in User Registration
 
@@ -48,3 +50,5 @@ Today, we made progress in enhancing the user registration process by incorporat
 - Conduct thorough testing of the image upload feature to ensure seamless integration with the user registration process and smooth user experience.
 - Implement additional functionalities such as image resizing and compression to optimize performance and reduce storage requirements.
 - Continuously monitor and optimize the image upload process to maintain reliability, security, and efficiency over time.
+
+#
