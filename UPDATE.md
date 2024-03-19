@@ -25,17 +25,17 @@ While setting up the development environment, we encountered a nodemon issue tha
 
 Today's progress marks a significant step forward, and we are excited about the upcoming milestones and improvements in our application.
 
-## Update of (19-3-2024): Implementing Image Upload in User Registration
+# Update of (19-3-2024): Implementing Image Upload in User Registration
 
-### Summary:
+## Summary:
 Today, we made progress in enhancing the user registration process by incorporating the ability for users to upload profile pictures during registration. This feature adds a visual element to user profiles and improves the overall user experience.
 
-### Achievements:
+## Achievements:
 - Successfully integrated image upload functionality into the user registration process, allowing users to upload profile pictures along with other registration details.
 - Utilized appropriate middleware or libraries to handle file uploads securely and efficiently.
 - Configured the backend to store uploaded images in a designated location or cloud storage service, ensuring data integrity and accessibility.
 
-### Challenges Faced:
+## Challenges Faced:
 1. **Handling File Uploads:**
    - Faced challenges in implementing file upload functionality securely while ensuring compatibility with various file types and sizes.
    - Overcame this by leveraging established libraries or middleware tailored for file uploads and configuring them to meet our requirements.
@@ -44,7 +44,7 @@ Today, we made progress in enhancing the user registration process by incorporat
    - Encountered difficulties in determining the optimal storage solution for uploaded images, considering factors such as scalability, cost-effectiveness, and data privacy.
    - Addressed this by carefully evaluating different storage options and selecting the most suitable one based on our application's needs and constraints.
 
-### Next Steps:
+## Next Steps:
 - Conduct thorough testing of the image upload feature to ensure seamless integration with the user registration process and smooth user experience.
 - Implement additional functionalities such as image resizing and compression to optimize performance and reduce storage requirements.
 - Continuously monitor and optimize the image upload process to maintain reliability, security, and efficiency over time.
