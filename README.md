@@ -161,7 +161,7 @@ The project is a social media platform called "FriendFusion" that allows users t
 - **GET** /profile/{user_id}: Retrieve user profile information.
 - **PUT** /profile/update: Modify user profile details.
 - **PUT** /password/update: Update user password.
-- *UPDATE* /forgot_password: Change user password.
+- **UPDATE** /forgot_password: Change user password.
 - **DELETE** /delete/{user_id}: Remove a user's account.
 
 ## Post Endpoints
