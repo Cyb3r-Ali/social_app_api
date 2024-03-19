@@ -15,6 +15,7 @@ The project is a social media platform called "FriendFusion" that allows users t
 - profile_picture
 - bio
 - role
+- is_admin (boolean)
 - registration_date
 
 ### Posts Table:
