@@ -6,6 +6,20 @@ const Joi = require('joi');
 const env = require("dotenv")
 env.config(); // Load environment variables
 
+const multer = require("multer")
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./uploads/");
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+
+
 // Define a custom validator function to check if a string is all lowercase
 const isLowerCase = (value, helpers) => {
     if (value === value.toLowerCase()) {
