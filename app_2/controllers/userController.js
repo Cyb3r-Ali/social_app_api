@@ -23,10 +23,26 @@ exports.getAllUsers = async (req, res) => {
 
 // Controller function for submitting user bio
 exports.submitBio = async (req, res) => {
-    const { userId, bio } = req.body;
+    const { bio } = req.body;
+
+    if (!bio) {
+        return res.status(400).json({
+            status: 400,
+            error: 'Please provide a bio!'
+        })
+    }
+
+    const id = req.header('user_id')
+
+    if (!id) {
+        return res.status(400).json({
+            status: 400,
+            error: 'Not authorized!'
+        });
+    }
 
     // Check if the provided userId corresponds to a registered user who completed step 1
-    const user = await userModel.getUserByField("id", userId);
+    const user = await userModel.getUserByField("id", id);
 
     if (!user) {
         return res.status(400).json({
@@ -37,11 +53,11 @@ exports.submitBio = async (req, res) => {
 
     // Update the user's bio information in the database
     try {
-        await userModel.updateUserBio(userId, bio);
+        await userModel.updateUserBio(id, bio);
         res.status(200).json({
             status: 200,
             message: 'User bio updated successfully',
-            user:req.user
+            user: ""
         });
     } catch (error) {
         console.error('Error updating user bio:', error);

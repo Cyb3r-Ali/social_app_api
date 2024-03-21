@@ -50,3 +50,21 @@ exports.createUser = async ({ full_name, email, password, role, is_admin, profil
         return err_obj
     }
 };
+
+// Function to update user's bio in the database
+
+exports.updateUserBio = async (id, bio) => {
+    try {
+        const sql = `UPDATE users SET bio =? WHERE id =?`;
+        const [result] = await pool.query(sql, [bio, id]);
+        const user = get
+        return result || [];
+    } catch (error) {
+        console.log(error);
+        const err_obj = {
+            status: 500,
+            message: error.message
+        }
+        return err_obj
+    }
+};
