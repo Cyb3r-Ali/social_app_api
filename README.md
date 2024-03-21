@@ -11,7 +11,7 @@ The project is a social media platform called "FriendFusion" that allows users t
 - user_id (Primary Key)
 - username
 - email
-- password_hash
+- password
 - profile_picture
 - bio
 - role
