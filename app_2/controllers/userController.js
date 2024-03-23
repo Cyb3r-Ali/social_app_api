@@ -53,11 +53,11 @@ exports.submitBio = async (req, res) => {
 
     // Update the user's bio information in the database
     try {
-        await userModel.updateUserBio(id, bio);
+        const updatedUser = await userModel.updateUserBio(id, bio);
         res.status(200).json({
             status: 200,
             message: 'User bio updated successfully',
-            user: ""
+            user: updatedUser
         });
     } catch (error) {
         console.error('Error updating user bio:', error);

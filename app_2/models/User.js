@@ -52,13 +52,32 @@ exports.createUser = async ({ full_name, email, password, role, is_admin, profil
 };
 
 // Function to update user's bio in the database
-
 exports.updateUserBio = async (id, bio) => {
     try {
         const sql = `UPDATE users SET bio =? WHERE id =?`;
         const [result] = await pool.query(sql, [bio, id]);
-        const user = get
-        return result || [];
+        const user = await this.getUserByField("id", id)
+        console.log("result variable: ", result);
+        if (!result) {
+
+
+            const err_obj = {
+                status: 404,
+                message: "Something went wrong!"
+            }
+            return err_obj
+        } else {
+            console.log("user variable: ", user);
+            if (!user) {
+                const errObj = {
+                    status: 404,
+                    message: "Could not retrieve data!"
+                }
+                return errObj
+            } else {
+                return user || [];
+            }
+        }
     } catch (error) {
         console.log(error);
         const err_obj = {
