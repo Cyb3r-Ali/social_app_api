@@ -87,3 +87,27 @@ exports.updateUserBio = async (id, bio) => {
         return err_obj
     }
 };
+
+// Function to update user's profile picture in the database
+exports.updateUserProfilePic = async (userId, filePath) => {
+    try {
+        // Define SQL query to update user's profile picture
+        const sql = 'UPDATE users SET profile_picture = ? WHERE id = ?';
+
+        // Execute SQL query to update user's profile picture
+        const [result] = await pool.query(sql, [filePath, userId]);
+
+        // Check if any rows were affected by the update
+        if (result.affectedRows === 0) {
+            // If no rows were affected, throw an error indicating that the user was not found
+            throw new Error('User not found');
+        }
+
+        // Fetch and return the updated user by their ID
+        const updatedUser = await this.getUserByField('id', userId);
+        return updatedUser;
+    } catch (error) {
+        // Catch any errors that occur during the update process and rethrow them
+        throw new Error(error.message);
+    }
+};

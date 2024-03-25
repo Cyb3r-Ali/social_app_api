@@ -23,6 +23,10 @@ router.post("/logout", authController.logout)
 // Route to update users bio as step 2 (protected route)
 router.post("/register/step_2", authenticateToken, userController.submitBio)
 
+
+// Route to update users bio as step 2 (protected route)
+router.post("/register/step_3", authenticateToken, userController.uploadUserProfilePic)
+
 // Route to get all users (protected route)
 router.get('/users', authenticateToken, userController.getAllUsers);
 
