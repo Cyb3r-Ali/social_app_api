@@ -39,6 +39,11 @@ const loginSchema = Joi.object({
 });
 
 
+// Controller function for user login
+const activeSessions = {}; // Object to store active session tokens
+
+
+
 // Controller function for user registration
 exports.register = async (req, res) => {
     // Validate request body against the schema
@@ -132,9 +137,6 @@ exports.register = async (req, res) => {
     }
 }
 
-
-// Controller function for user login
-const activeSessions = {}; // Object to store active session tokens
 
 exports.login = async (req, res) => {
     // Validate request body against the schema
