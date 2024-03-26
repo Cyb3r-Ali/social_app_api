@@ -32,13 +32,13 @@ exports.getAllUsers = async () => {
 
 
 // Function to create a new user in the database
-exports.createUser = async ({ full_name, email, password, role, is_admin, profile_picture, username, bio }) => {
+exports.createUser = async ({ first_name, last_name, full_name, email, password, role, is_admin, profile_picture, username, bio }) => {
     try {
 
-        const sql = `INSERT INTO users (full_name, email, password, role, is_admin, profile_picture, registration_date, username, bio)
-        VALUES (?,?,?,?,?,?,?,?,?)`;
+        const sql = `INSERT INTO users (first_name, last_name, full_name, email, password, role, is_admin, profile_picture, registration_date, username, bio)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?)`;
 
-        const [result] = await pool.query(sql, [full_name, email, password, role, is_admin, profile_picture, new Date(), username, bio]);
+        const [result] = await pool.query(sql, [first_name, last_name, full_name, email, password, role, is_admin, profile_picture, new Date(), username, bio]);
         const user = this.getUserByField("id", result.insertId)
         return user;
     } catch (error) {

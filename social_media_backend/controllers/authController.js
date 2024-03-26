@@ -6,20 +6,6 @@ const Joi = require('joi');
 const env = require("dotenv")
 env.config(); // Load environment variables
 
-// const multer = require("multer")
-
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, "./uploads/");
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-//     }
-// });
-
-// const upload = multer({ storage: storage });
-
-
 // Define a custom validator function to check if a string is all lowercase
 const isLowerCase = (value, helpers) => {
     if (value === value.toLowerCase()) {
@@ -31,18 +17,8 @@ const isLowerCase = (value, helpers) => {
 
 // Define Joi schema for user registration
 const registerSchema = Joi.object({
-    full_name: Joi.string().required(),
-    // username: Joi.string()
-    //     .required()
-    //     .custom((value, helpers) => {
-    //         if (value.includes(' ')) {
-    //             return helpers.message({ custom: 'Username must not contain spaces' });
-    //         }
-    //         if (value !== value.toLowerCase()) {
-    //             return helpers.message({ custom: 'Username must be all lowercase' });
-    //         }
-    //         return value;
-    //     }),
+    first_name: Joi.string().required(),
+    last_name: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(8).required(),
     confirm_password: Joi.string().valid(Joi.ref('password')).required().messages({
@@ -76,9 +52,10 @@ exports.register = async (req, res) => {
     }
 
     // Destructure necessary data from the request body
-    const { full_name, email, password } = req.body;
+    const { first_name, last_name, email, password } = req.body;
 
     // Set default values for role and is_admin
+    const full_name = first_name + " " + last_name
     const role = 'user';
     const is_admin = 0;
 
@@ -97,7 +74,7 @@ exports.register = async (req, res) => {
         if (existingEmail) {
             return res.status(400).json({
                 status: 400,
-                error: 'User with this email already exists'
+                error: 'User with that email already exists'
             });
         }
 
@@ -105,11 +82,24 @@ exports.register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create a new user with default values for other columns
-        const newUser = await userModel.createUser({ full_name, email, password: hashedPassword, role, is_admin, profile_picture, username, bio });
+        const newUser = await userModel.createUser({
+            first_name,
+            last_name,
+            full_name,
+            email,
+            password: hashedPassword,
+            role,
+            is_admin,
+            profile_picture,
+            username,
+            bio
+        });
 
         // Generate JWT token for the new user
         const payload = {
             id: newUser.id,
+            first_name: newUser.first_name,
+            last_name: newUser.last_name,
             full_name: newUser.full_name,
             email: newUser.email,
             bio: newUser.bio,
@@ -124,7 +114,6 @@ exports.register = async (req, res) => {
 
         // Set token and user_id in the response headers
         res.setHeader('Authorization', `Bearer ${token}`);
-        res.setHeader('user_id', newUser.id);
 
         // Send success response with user data
         res.status(201).json({
@@ -180,7 +169,8 @@ exports.login = async (req, res) => {
 
         // Invalidate previous session if exists
         if (activeSessions[user.id]) {
-            delete activeSessions[user.id];
+            console.log(`token already exists: ${user.id}`);
+            delete activeSessions[user.id]; // Invalidate previous session
         }
 
         // Generate JWT token for the user
@@ -200,9 +190,8 @@ exports.login = async (req, res) => {
         // Save session token in activeSessions
         activeSessions[user.id] = token;
 
-        // Set token and user_id in the response headers
-        res.setHeader('Authorization', `Bearer ${token}`);
-        res.setHeader('user_id', user.id);
+        // Set token in the response headers
+        res.setHeader('Authorization', `Bearer ${token}`)
 
         // Send success response without including token in the body
         res.status(200).json({
@@ -218,6 +207,7 @@ exports.login = async (req, res) => {
         });
     }
 };
+
 
 
 // Controller function for user logout // Controller function for user logout 

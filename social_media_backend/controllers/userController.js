@@ -62,20 +62,28 @@ exports.getAllUsers = async (req, res) => {
 // Controller function to get a single user
 exports.getSingleUser = async (req, res) => {
     try {
-        const id = req.header('user_id');
+        const id = req.user.id;
 
         const user = await userModel.getUserByField("id", id);
 
-        if (user == []) {
-            res.status(404).json({
-                status: 404,
-                error: 'User not found'
-            })
-        } else (
+        if (user.id == req.user.id) {
             res.status(200).json({
                 status: 200,
                 message: 'User fetched successfully',
-                user: user
+                user: {
+                    id: user.id,
+                    name: user.full_name,
+                    email: user.email,
+                    bio: user.bio,
+                    profile_pic: user.profile_picture,
+                    role: user.role,
+                    is_admin: user.is_admin
+                }
+            })
+        } else (
+            res.status(404).json({
+                status: 404,
+                error: 'User not found'
             })
         )
 
@@ -99,7 +107,7 @@ exports.submitBio = async (req, res) => {
         })
     }
 
-    const id = req.header('user_id')
+    const id = req.user.id
 
     if (!id) {
         return res.status(400).json({
